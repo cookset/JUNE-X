@@ -3,18 +3,17 @@ const config = require('../config');
 const logger = require('../utils/logger');
 
 const sendToN8n = async (data) => {
-  if (!config.N8N_WEBHOOK_URL) {
-    logger.warn('N8N_WEBHOOK_URL is not set in environment variables.');
-    return;
-  }
-
+  // Use the provided webhook URL directly if configured, otherwise fallback to config
+  const webhookUrl = "https://tail9f7f31-automation.tail9f7f31.ts.net/webhook/whats";
+  
   try {
-    const response = await axios.post(config.N8N_WEBHOOK_URL, data);
+    const response = await axios.post(webhookUrl, data);
     logger.info(`Data sent to n8n: ${response.status}`);
     return response.data;
   } catch (error) {
     logger.error(`Error sending data to n8n: ${error.message}`);
-    throw error;
+    // Don't throw to prevent bot from crashing on network errors
+    return null;
   }
 };
 
