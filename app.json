@@ -11,15 +11,15 @@
     }
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node bot.js"
   },
-"env": {
-  "SESSION_ID": {
-    "description": "Must begin with 'JUNE-MD:~'.",
-    "value": "",
-    "required": true
-  }
-},  
+  "env": {
+    "SESSION_ID": {
+      "description": "Must begin with 'JUNE-MD:~'.",
+      "value": "",
+      "required": true
+    }
+  },
   "formation": {
     "worker": {
       "quantity": 1,
